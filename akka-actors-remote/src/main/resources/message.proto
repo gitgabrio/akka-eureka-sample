@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+option java_package = "br.com.idtrust.samples.akka.protocol";
+
+option java_outer_classname = "MessageProto";
+
+
+message Message {
+    required int32 id = 1;
+    required string description = 2;
+}
+
+message ResultMessage {
+    required int32 id = 1;
+    required Status status = 2;
+    enum Status {
+        OK = 0;
+        ERROR = 1;
+    }
+}
