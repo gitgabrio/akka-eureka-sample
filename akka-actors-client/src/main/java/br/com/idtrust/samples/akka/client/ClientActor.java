@@ -24,17 +24,13 @@ public class ClientActor extends UntypedActor {
     }
 
     private void sendIdentifyRequest() {
-
         DiscoveryManager.getInstance().initComponent(
                 new MyDataCenterInstanceConfig(),
                 new DefaultEurekaClientConfig());
-
         InstanceInfo nextServerInfo = DiscoveryManager.getInstance()
                 .getEurekaClient()
                 .getNextServerFromEureka("akka.idtrust.com.br", false);
-
         final String serviceUrl = nextServerInfo.getInstanceId();
-
         path = "akka.tcp://RemoteWorkerSystem@" + serviceUrl + ":" + nextServerInfo.getPort() + "/user/remoteActor";
 
         System.out.println("Sending message to server " + serviceUrl);

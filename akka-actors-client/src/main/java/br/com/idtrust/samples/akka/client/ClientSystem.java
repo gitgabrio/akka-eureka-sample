@@ -16,16 +16,11 @@ public class ClientSystem {
     public static void main(String[] args) throws Exception {
         final ActorSystem system = ActorSystem.create("Client",
                 ConfigFactory.load("application"));
-
         final ActorRef actor = system.actorOf(
                 Props.create(ClientActor.class), "clientActor");
-        
         Thread.sleep(2000);
-
         Random random = new Random();
-
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.println("Type a message or 'quit'");
             String inputMessage = scanner.nextLine();
@@ -37,9 +32,7 @@ public class ClientSystem {
                             .setId(random.nextInt()).setDescription(inputMessage).build();
             actor.tell(message, null);
         }
-
         system.terminate();
-
     }
 }
 
