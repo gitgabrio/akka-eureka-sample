@@ -32,7 +32,7 @@ public class ClientActor extends UntypedActor {
                 .getNextServerFromEureka("akka.idtrust.com.br", false);
         final String serviceUrl = nextServerInfo.getInstanceId();
         path = "akka.tcp://RemoteWorkerSystem@" + serviceUrl + ":" + nextServerInfo.getPort() + "/user/remoteActor";
-
+//        path = "akka.tcp://RemoteWorkerSystem@localhost" + ":" + nextServerInfo.getPort() + "/user/remoteActor";
         System.out.println("Sending message to server " + serviceUrl);
 
         getContext().actorSelection(path).tell(new Identify(path), getSelf());
